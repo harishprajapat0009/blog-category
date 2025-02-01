@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Details</title>
+    <!-- Main Css  -->
+    <link rel="stylesheet" href="/UserPanelCss/css/style.css.css" type="text/css">
+    <!-- Font-Family -->
+    <link rel="stylesheet" href="/UserPanelCss/font/stylesheet.css" type="text/css">
+    <!-- Icon -->
+    <link rel="stylesheet" href="/UserPanelCss/remix/remixicon.css" type="text/css">
+</head>
+<body>
+    <!-- header  -->
+     <header>
+            <div class="d-flex justify-evenly align-center">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/UserPanelCss/img/ht_100_logo.webp" alt="" title="Logo" width="350">
+                    </a>
+                </div>
+
+                <h3><%= new Date().toLocaleDateString() %></h3>
+
+                <div class="profile d-flex align-center">
+                    <div class="home d-flex align-center">
+                        <a href="/" title="Home"><i class="ri-home-4-line"></i></a>
+                    </div>
+
+                    <form>
+                        <div class="input-group">
+                            <i class="ri-search-line"></i>
+                            <input type="text" name="searchBlog" value="" placeholder="Search Blog" class="form-control">
+                          <span class="">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                          </span>
+                        </div>
+                    </form>
+                    
+                    <% if(locals.user) { %>
+                        <div class="user-profile">
+                            <img src="<%= locals.user.userImage %>" alt="">
+                            <div class="logout-btn">
+                                <a href="/userLogout">
+                                    <button class="Btn" style="background-color: rgb(255, 65, 65);">
+                                        <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>                                            
+                                        <div class="text">Logout</div>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <div class="user-profile">
+                            <a href="" title="Login" class="profile-icon"><i class="ri-user-2-fill"></i></a>
+                            <div class="logout-btn">
+                                <a href="/userLogin">
+                                    <button class="Btn">
+                                    
+                                        <div class="sign"><svg viewBox="0 0 512 512"><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg></div>
+                                        
+                                        <div class="text">User Login</div>
+                                    </button>
+                                </a>
+                                <a href="/signIn">
+                                    <button class="Btn">
+                                    
+                                        <div class="sign"><svg viewBox="0 0 512 512"><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg></div>
+                                        
+                                        <div class="text">Admin Login</div>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>  
+                    <% } %>
+                </div>
+            </div>
+     </header>
+
+    <!-- Main -->
+    <div class="container">
+        <main>
+            <div class="row">
+                <div class="w-2">
+                    <div class="back">
+                        <a href="/"><i class="ri-arrow-left-circle-line"></i></i></a>
+                        <h2 class="heading text-center">LATEST BLOG</h2>
+                    </div>
+                    <div class="blog-card">
+                        <h2><%= singleBlog.blogTitle %></h2>
+                        <hr>
+                        <h4><%= new Date().toLocaleDateString() %></h4>
+                        <%- singleBlog.description %>
+                        <hr><br>
+
+                        <!--Add Comment -->
+                         <h3 class="text-center ">Comment Here</h3>
+                         <form class="commentForm" action="/insertComments" method="post">
+                            <input type="hidden" name="blogId" value="<%= singleBlog.id %>">
+                            <% if(locals.user) { %>
+                                <input type="hidden" name="userId" value="<%= locals.user._id %>">
+                            <% } %>
+                            <div class="d-flex align-center">
+                                <label>Comment :</label>
+                                <textarea name="comment"></textarea>
+                            </div>
+                            <% if(locals.user) { %>
+                                <button type="submit">Submit</button>
+                            <% } else { %>
+                                <a href="/userLogin" title="Login" style="display: flex;"><button type="button">Submit</button></a> 
+                            <% } %>
+                         </form>
+
+                         <!--View Comment -->
+                         <h3 class="text-center">Recent Comments</h3>
+
+                         <% getComment.map((v, i) => { %>
+                            <div class="comment-card">
+                                <div class="d-flex align-centers">
+                                    <div class="user-img">
+                                        <img src="<%= v.userId.userImage %>" alt="">
+                                    </div>
+                                    <div class="user-details w-1">
+                                        <div class="d-flex justify-between align-center">
+                                            <h5><%= v.userId.userName %></h5>
+                                            <div>
+                                                <% if(locals.user) { %>
+                                                    <a href="/setUserLikes/<%= v.id %>"><i class="ri-thumb-up-line"></i>(<%= v.likes.length %>)</a>
+                                                    <a href="/setUserDislikes/<%= v.id %>""><i class="ri-thumb-down-line"></i>(<%= v.dislikes.length %>)</a>
+                                                <% } else { %>
+                                                    <a href="/userLogin"><i class="ri-thumb-up-line"></i>(<%= v.likes.length %>)</a>
+                                                    <a href="/userLogin"><i class="ri-thumb-down-line"></i>(<%= v.dislikes.length %>)</a>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <p><%= v.createdAt.toLocaleDateString() %></p>
+                                    </div>
+                                </div>
+                                <p class="comment"><%= v.comment %></p>
+                             </div>
+                         <% }) %>
+                    </div>
+                </div>
+                <div class="w-2">
+                    <h2 class="heading text-center">RECENT BLOGS</h2>
+                    <% allBlog.map((v,i)=>{ %> 
+                        <a href="/blogDetails/?blogId=<%=v.id%>">
+                            <div class="card d-flex">
+                                <div class="w-70">
+                                    <div class="blog-details">
+                                        <h2><%= v.blogTitle.substring(0, 100) %></h2>
+                                        <%- v.description.substring(0, 110) %>...
+                                    </div>
+                                </div>
+                                <div class="w-30">
+                                    <div class="blog-Img">
+                                        <img src="<%= v.blogImage %>" alt="<%= v.blogImage %>">
+                                    </div>
+                                </div>
+                                <span><%= v.categoryId.categoryName %></span>
+                            </div>
+                        </a>
+                    <% }) %>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<%- include('../Layouts/Header') %>
+
+      <!--begin::App Main-->
+      <main class="app-main">
+        <!--begin::App Content Header-->
+        <div class="app-content-header">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6"><h3 class="mb-0">View Comments</h3></div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">View Comments</li>
+                </ol>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
+        <div class="app-content">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <div class="card mb-4">
+              <div class="card-header d-flex">
+                <h3 class="card-title col-sm-4">Comment Data Table</h3>
+
+                <form class="col-sm-3">
+                    <div class="input-group">
+                        <input type="text" name="searchCategory" value="<%= Search %>" placeholder="Search Category" class="form-control">
+                      <span class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                      </span>
+                    </div>
+                </form>
+
+                <a class="col-sm-2" href="/viewComment"><button type="submit" class="btn btn-danger">Reset All</button></a>
+                
+                <form class="col-sm-3" id="sortForm">
+                  <select class="form-select" id="selectOption" name="sortBy">
+                    <option>--Sort By--</option>
+                    <option value="asc">Ascending</option>
+                    <option value="desc" >Descending</option>
+                  </select>
+                </form>
+
+              </div>
+              <!-- /.card-header -->
+                <div class="card-body">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Comment</th>
+                        <th>BlogId</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <% commentData.map((v, i) => { %>
+                             <tr>
+                                 <td><%= i+1 %></td>
+                                 <td><%= v.comment %></td>
+                                 <td><%= v.blogId %></td>
+                                 <td class="<%= v.status? 'text-success':'text-danger'  %>"><%= v.status? 'Active':'Deactive' %></td>
+                                 
+                                 <td>
+                                     <a href="/dashboard/changeCommentStatus/?commentId=<%= v.id %>&status=<%= !v.status?true:false %>" class="btn <%= v.status? 'btn-danger':'btn-success' %>"><%= v.status? 'Deactivate':'Activate' %></a>
+                                 </td>
+                             </tr>
+                        <% })%>
+                     </tr>
+                    </tbody>
+                  </table>
+                </div>
+              <!-- /.card-body -->
+
+             
+                
+            </div>
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content-->
+      </main>
+      <!--end::App Main-->
+
+<%- include('../Layouts/Footer') %>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+<!-- Select All -->
+<script>
+  $("#multyDeleteBtn").hide();
+
+  $("#checkAll").click(function () {
+    $('input:checkbox').not(this).prop('checked', this.checked);
+    $("#multyDeleteBtn").toggle();
+  });
+</script>
+
+ <!-- Sorting -->
+<script>
+  let selectOption = document.querySelector('#selectOption');
+  let form = document.querySelector('#sortForm');
+
+  selectOption.addEventListener('change', (e) => {
+      if (e.target.value === 'asc' || e.target.value === 'desc') {
+          // Trigger the form submit automatically when either "Ascending" or "Descending" is selected
+          form.submit();
+      }
+  });
+</script>

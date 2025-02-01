@@ -1,0 +1,189 @@
+<%- include('../Layouts/Header') %>
+
+<!--begin::App Main-->
+<main class="app-main">
+    <!--begin::App Content Header-->
+    <div class="app-content-header">
+      <!--begin::Container-->
+      <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+          <div class="col-sm-6"><h3 class="mb-0">Add Admin</h3></div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-end">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Add Admin</li>
+            </ol>
+          </div>
+        </div>
+        <!--end::Row-->
+      </div>
+      <!--end::Container-->
+    </div>
+    <!--end::App Content Header-->
+    <!--begin::App Content-->
+    <div class="app-content">
+      <!--begin::Container-->
+      <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row g-4">
+          
+          <!--begin::Col-->
+          <div class="col-md-6">
+            <!--begin::Horizontal Form-->
+            <div class="card card-warning card-outline mb-4">
+              <!--begin::Header-->
+              <div class="card-header"><div class="card-title">Form</div></div>
+              <!--end::Header-->
+              <!--begin::Form-->
+              <form method="post" action="/dashboard/insertAdmin" enctype="multipart/form-data">
+                <!--begin::Body-->
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">First Name</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="inputEmail3" name="fname" value="<% if(oldInput && oldInput.fname){ %><%= oldInput.fname %><% } %>" />
+                          <% if(errorsData && errorsData.fname){ %>
+                            <span style="color: red;"><%= errorsData.fname.msg %></span>
+                          <% } %>
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Last Name</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="inputEmail3" name="lname" value="<% if(oldInput && oldInput.lname){ %><%= oldInput.lname %><% } %>" />
+                          <% if(errorsData && errorsData.lname){ %>
+                            <span style="color: red;"><%= errorsData.lname.msg %></span>
+                          <% } %>
+                        </div>
+                      </div>
+                  <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputEmail3" name="email" value="<% if(oldInput && oldInput.email){ %><%= oldInput.email %><% } %>" />
+                      <% if(errorsData && errorsData.email){ %>
+                        <span style="color: red;"><%= errorsData.email.msg %></span>
+                      <% } %>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="inputPassword3" name="password" value="<% if(oldInput && oldInput.password){ %><%= oldInput.password %><% } %>" />
+                      <% if(errorsData && errorsData.password){ %>
+                        <span style="color: red;"><%= errorsData.password.msg %></span>
+                      <% } %>
+                    </div>
+                  </div>
+                  <fieldset class="row mb-3">
+                    <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                    <div class="col-sm-10">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="gender"
+                          id="gridRadios1"
+                          value="Male"
+                          <% if(oldInput && oldInput.gender) { if(oldInput.gender == "Male") { %> <%= 'checked' %> <% }} %>
+                        />
+                        <label class="form-check-label" for="gridRadios1"> Male </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="gender"
+                          id="gridRadios2"
+                          value="Female"
+                          <% if(oldInput && oldInput.gender) { if(oldInput.gender == "Female") { %> <%= 'checked' %> <% }} %>
+                        />
+                        <label class="form-check-label" for="gridRadios2"> Female </label>
+                      </div>
+                      <% if(errorsData && errorsData.gender){ %>
+                        <span style="color: red;"><%= errorsData.gender.msg %></span>
+                      <% } %>
+                    </div>
+                  </fieldset>
+                  <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Hobby</label>
+                    <div class="col-sm-10">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1" name="hobby" value="Reading" 
+                        <% if(oldInput && oldInput.hobby) { if(oldInput.hobby.includes("Reading")) { %> <%= 'checked' %> <% }} %> />
+                        <label class="form-check-label" for="gridCheck1">
+                          Reading
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1" name="hobby" value="Learning" 
+                        <% if(oldInput && oldInput.hobby) { if(oldInput.hobby.includes("Learning")) { %> <%= 'checked' %> <% }} %> />
+                        <label class="form-check-label" for="gridCheck1">
+                          Learning
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1" name="hobby" value="Coding" 
+                        <% if(oldInput && oldInput.hobby) { if(oldInput.hobby.includes("Coding")) { %> <%= 'checked' %> <% }} %> />
+                        <label class="form-check-label" for="gridCheck1">
+                          Coding
+                        </label>
+                      </div>
+                      <% if(errorsData && errorsData.hobby){ %>
+                        <span style="color: red;"><%= errorsData.hobby.msg %></span>
+                      <% } %>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="validationCustom04" class="col-sm-2 col-form-label">Select Role</label>
+                    <div class="col-sm-10">
+                        <% var role = ["Web Developer", "App Developer", "AI Developer", "UI Designer"] %>
+                        <select class="form-select" id="validationCustom04" name="role">
+                            <option selected disabled value="">Choose Role...</option>
+                            <% role.map((v, i) => { %>
+                                <option value="<%= v %>" 
+                                  <% if(oldInput && oldInput.role) { if(oldInput.role == v) { %> <%= 'selected' %> <% }} %>><%= v %></option>
+                            <% }) %>
+                        </select>
+                        <% if(errorsData && errorsData.role){ %>
+                          <span style="color: red;"><%= errorsData.role.msg %></span>
+                        <% } %>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Image</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" id="inputGroupFile02" name="adminImage" />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Message</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" aria-label="With textarea" name="message"><% if(oldInput && oldInput.message){ %><%= oldInput.message %><% } %></textarea>
+                        <% if(errorsData && errorsData.message){ %>
+                          <span style="color: red;"><%= errorsData.message.msg %></span>
+                        <% } %>
+                    </div>
+                  </div>
+                </div>
+                <!--end::Body-->
+                <!--begin::Footer-->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-warning">Add Admin</button>
+                </div>
+                <!--end::Footer-->
+              </form>
+              <!--end::Form-->
+            </div>
+            <!--end::Horizontal Form-->
+          </div>
+        </div>
+        <!--end::Row-->
+      </div>
+      <!--end::Container-->
+    </div>
+    <!--end::App Content-->
+  </main>
+  <!--end::App Main-->
+
+<%- include('../Layouts/Footer') %>

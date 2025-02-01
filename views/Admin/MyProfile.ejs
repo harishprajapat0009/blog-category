@@ -1,0 +1,74 @@
+<%- include('../Layouts/Header') %>
+
+      <!--begin::App Main-->
+      <main class="app-main">
+        <!--begin::App Content Header-->
+        <div class="app-content-header">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6"><h3 class="mb-0">My Profile</h3></div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+                </ol>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
+        <div class="app-content">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <div class="card mb-4">
+              <div class="card-header"><h3 class="card-title">Admin Profile</h3></div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <img src="<%= locals.user.adminImage %>" alt="">
+                <table class="table table-bordered">
+                  <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <th><%= locals.user.name %></th>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <th><%= locals.user.email %></th>
+                    </tr>
+                    <tr>
+                        <th>Gender</th>
+                        <th><%= locals.user.gender %></th>
+                    </tr>
+                    <tr>
+                        <th>Hobby</th>
+                        <th><%= locals.user.hobby %></th>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <th><%= locals.user.role %></th>
+                    </tr>
+                    <tr>
+                        <th>Message</th>
+                        <th><%= locals.user.message %></th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="card-footer">
+                <a href="/dashboard/updateAdmin/<%= locals.user.id %>"><button type="submit" class="btn btn-warning">Edit Profile</button></a>
+              </div>
+            </div>
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content-->
+      </main>
+      <!--end::App Main-->
+      
+
+<%- include('../Layouts/Footer') %>

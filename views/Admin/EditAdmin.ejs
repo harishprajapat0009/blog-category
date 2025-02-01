@@ -1,0 +1,167 @@
+<%- include('../Layouts/Header') %>
+
+<!--begin::App Main-->
+<main class="app-main">
+    <!--begin::App Content Header-->
+    <div class="app-content-header">
+      <!--begin::Container-->
+      <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+          <div class="col-sm-6"><h3 class="mb-0">Edit Admin</h3></div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-end">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Edit Admin</li>
+            </ol>
+          </div>
+        </div>
+        <!--end::Row-->
+      </div>
+      <!--end::Container-->
+    </div>
+    <!--end::App Content Header-->
+    <!--begin::App Content-->
+    <div class="app-content">
+      <!--begin::Container-->
+      <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row g-4">
+          
+          <!--begin::Col-->
+          <div class="col-md-6">
+            <!--begin::Horizontal Form-->
+            <div class="card card-warning card-outline mb-4">
+              <!--begin::Header-->
+              <div class="card-header"><div class="card-title">Admin Details</div></div>
+              <!--end::Header-->
+              <!--begin::Form-->
+              <form method="post" action="/dashboard/editAdmin" enctype="multipart/form-data">
+                <input type="hidden" name="adminId" value="<%= singleObj._id %>">
+                <!--begin::Body-->
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">First Name</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="inputEmail3" name="fname" value="<%= flName[0] %>"/>
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Last Name</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="inputEmail3" name="lname" value="<%= flName[1] %>"/>
+                        </div>
+                      </div>
+                  <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputEmail3" name="email" value="<%= singleObj.email %>"/>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="inputPassword3" name="password" value="<%= singleObj.password %>"/>
+                    </div>
+                  </div>
+                  <fieldset class="row mb-3">
+                    <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                    <div class="col-sm-10">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="gender"
+                          id="gridRadios1"
+                          value="Male"
+                          <% if(singleObj.gender == 'Male'){ %> <%= 'checked' %> <% } %>
+                        />
+                        <label class="form-check-label" for="gridRadios1"> Male </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="gender"
+                          id="gridRadios2"
+                          value="Female"
+                          <% if(singleObj.gender == 'Female'){ %> <%= 'checked' %> <% } %>
+                        />
+                        <label class="form-check-label" for="gridRadios2"> Female </label>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Hobby</label>
+                    <div class="col-sm-10">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1" name="hobby" value="Reading"
+                        <% if(singleObj.hobby.includes('Reading')){ %><%= 'checked' %> <% } %> />
+                        <label class="form-check-label" for="gridCheck1">
+                          Reading
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1" name="hobby" value="Learning" 
+                        <% if(singleObj.hobby.includes('Learning')){ %><%= 'checked' %> <% } %>/>
+                        <label class="form-check-label" for="gridCheck1">
+                            Learning
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1" name="hobby" value="Coding" 
+                        <% if(singleObj.hobby.includes('Coding')){ %><%= 'checked' %> <% } %>/>
+                        <label class="form-check-label" for="gridCheck1">
+                          Coding
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="validationCustom04" class="col-sm-2 col-form-label">Select Role</label>
+                    <div class="col-sm-10">
+                        <% var role = ["Web Developer", "App Developer", "AI Developer", "UI Designer"] %>
+                        <select class="form-select" id="validationCustom04" required name="role">
+                            <option selected disabled value="">Choose Role...</option>
+                            <% role.map((v, i) => { %>
+                                <option value="<%= v %>"
+                                    <% if(singleObj.role == v){ %> <%= 'selected' %> <% } %>><%= v %></option>
+                            <% }) %>
+                          </select>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Image</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" id="inputGroupFile02" name="adminImage" />
+                        <img src="<%= singleObj.adminImage %>" alt=""  width="200">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Message</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" aria-label="With textarea" name="message"><%= singleObj.message %></textarea>
+                    </div>
+                  </div>
+                </div>
+                <!--end::Body-->
+                <!--begin::Footer-->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-warning">Update Admin</button>
+                </div>
+                <!--end::Footer-->
+              </form>
+              <!--end::Form-->
+            </div>
+            <!--end::Horizontal Form-->
+          </div>
+        </div>
+        <!--end::Row-->
+      </div>
+      <!--end::Container-->
+    </div>
+    <!--end::App Content-->
+  </main>
+  <!--end::App Main-->
+
+<%- include('../Layouts/Footer') %>

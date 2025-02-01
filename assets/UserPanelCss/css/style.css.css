@@ -1,0 +1,428 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1320px;
+    margin: 0 auto;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-evenly {
+    justify-content: space-around;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+body {
+    font-family: 'Lato';
+}
+
+.w-1 {
+    width: 100%;
+}
+
+.w-30 {
+    width: 30%;
+}
+
+.w-2 {
+    width: 50%;
+}
+
+.w-70 {
+    width: 70%;
+}
+
+/* Home page  */
+/* header  */
+header {
+    background: #011e29;
+    color: white;
+    padding: 20px 0 !important;
+    position: fixed;
+    width: 100%;
+    z-index: 9;
+}
+
+main {
+    position: absolute;
+    top: 90px;
+    width: 100%;
+}
+
+header form .input-group {
+    position: relative;
+}
+
+header form .input-group .ri-search-line {
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    transform: translateY(-50%);
+}
+
+header form .input-group input {
+    padding: 4px 20px;
+    background: transparent;
+    border: none;
+}
+
+header form .input-group input,
+header form .input-group input::placeholder {
+    color: white;
+}
+
+header form .input-group button {
+    color: black;
+    background: white;
+    cursor: pointer;
+    padding: 4px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+header .profile .profile-icon {
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 50%;
+    color: white;
+}
+
+header .home a i{
+    color: white;
+    font-size: 24px;
+    margin-right: 30px;
+}
+header .user-profile{
+    margin-left: 30px;
+    position: relative;
+    cursor: pointer;
+    &:hover .logout-btn{
+        display: block;
+    }
+}
+header .user-profile img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+header .user-profile .logout-btn{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    padding: 5px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: all 0.5s linear;
+    display: none;
+}
+header .user-profile .logout-btn a{
+    margin-bottom: 10px;
+}
+
+
+
+/* Category */
+.nav {
+    padding: 10px 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.nav ul li {
+    margin: 0 8px;
+}
+
+.nav ul li a {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Heading */
+main .heading {
+    margin: 20px 0;
+    text-shadow: 2px 2px #FF0000;
+}
+
+main .sorting-form {
+    text-align: end;
+}
+
+main .form-select {
+    padding: 6px;
+    margin: 0 20px;
+    font-weight: bold;
+    width: 200px;
+    border-radius: 4px;
+}
+
+/* Blog */
+main .card {
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    height: 170px;
+    padding: 10px;
+    position: relative;
+    transition: all 0.2s linear;
+
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+}
+
+main .card span {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #00b1cd;
+}
+
+main .card .blog-details,
+main .card .blog-Img {
+    padding: 10px;
+}
+
+main .card .blog-details h2 {
+    font-size: 18px;
+}
+
+main .card .blog-Img img {
+    width: 180px;
+    height: 100px;
+    border-radius: 5px;
+    object-fit: cover;
+    object-position: top;
+}
+
+/* Blog-details */
+main .blog-card {
+    padding: 20px;
+    margin: 20px 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+main .blog-card h2 {
+    margin-bottom: 20px;
+}
+
+main .blog-card h4 {
+    margin: 10px 0;
+    color: #757575;
+}
+
+main .blog-card p {
+    color: #424242;
+    margin: 20px 10px;
+    font-size: 18px;
+}
+
+.ri-arrow-left-circle-line {
+    font-size: 40px;
+}
+
+.back {
+    position: relative;
+}
+
+.back a {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.commentForm, .comment-card {
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.commentForm label {
+    display: inline-block;
+    width: 80px;
+}
+
+.commentForm input,
+.commentForm textarea {
+    margin-bottom: 10px;
+    width: 80%;
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid;
+}
+
+.commentForm textarea {
+    margin: 0;
+    height: 50px;
+}
+
+.commentForm button {
+    padding: 10px 20px;
+    margin: 20px 30px 0 auto;
+    display: flex;
+    background: #198754;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.comment-card{
+    padding: 10px;
+}
+
+.comment-card .user-img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+    margin-right: 10px;
+}
+.user-details p{
+    margin: 0 !important;
+    font-size: 12px !important;
+}
+.comment-card .comment{
+    font-size: 14px !important;
+    margin: 5px 0 0 10px !important;
+}
+.user-details a{
+    padding-right: 5px;
+}
+
+/* Register */
+/* Credit to bootsnipp.com for the css for the color graph */
+.colorgraph {
+    height: 5px;
+    border-top: 0;
+    background: #c4e17f;
+    border-radius: 5px;
+    background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+
+.registration-form, .login-form{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* From Uiverse.io by vinodjangid07 */ 
+.Btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: blue;
+  }
+  
+  /* plus sign */
+  .sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sign svg {
+    width: 17px;
+  }
+  
+  .sign svg path {
+    fill: white;
+  }
+  /* text */
+  .text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: .3s;
+  }
+  /* hover effect on button width */
+  .Btn:hover {
+    width: 125px;
+    border-radius: 40px;
+    transition-duration: .3s;
+  }
+  
+  .Btn:hover .sign {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 20px;
+  }
+  /* hover effect button's text */
+  .Btn:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 10px;
+  }
+  /* button click effect*/
+  .Btn:active {
+    transform: translate(2px ,2px);
+  }
+

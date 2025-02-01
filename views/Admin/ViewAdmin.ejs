@@ -1,0 +1,113 @@
+<%- include('../Layouts/Header') %>
+
+      <!--begin::App Main-->
+      <main class="app-main">
+        <!--begin::App Content Header-->
+        <div class="app-content-header">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+              <div class="col-sm-6"><h3 class="mb-0">View Admin</h3></div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">View Admin</li>
+                </ol>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content Header-->
+        <!--begin::App Content-->
+        <div class="app-content">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <div class="card mb-4">
+              <div class="card-header d-flex">
+                <h3 class="card-title col-sm-3">Admin Data Table</h3>
+
+                <form class="col-sm-4">
+                  <div class="input-group">
+                      <input type="text" name="searchAdmin" value="<%= Search %>" placeholder="Search Admin by Names & Role" class="form-control">
+                    <span class="input-group-append">
+                      <button type="submit" class="btn btn-primary">Search</button>
+                    </span>
+                  </div>
+                </form>
+
+                <a class="col-sm-2" href="/dashboard/viewAdmin"><button type="submit" class="btn btn-danger">Reset All</button></a>
+                
+                <form class="col-sm-3" id="sortForm">
+                  <select class="form-select" id="selectOption" name="sortBy">
+                    <option>--Sort By--</option>
+                    <option value="asc">Ascending</option>
+                    <option value="desc" >Descending</option>
+                  </select>
+                </form>
+
+              </div>
+
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Gender</th>
+                      <th>Hobby</th>
+                      <th>Role</th>
+                      <th>Image</th>
+                      <th>Message</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <% SingleObj.map((v, i) => { %>
+                           <tr>
+                               <td><%= i+1 %></td>
+                               <td><%= v.name %></td>
+                               <td><%= v.email %></td>
+                               <td><%= v.gender %></td>
+                               <td><%= v.hobby %></td>
+                               <td><%= v.role %></td>
+                               <td><img src="<%= v.adminImage %>" alt="<%= v.image %>" width="100px"></td>
+                               <td><%= v.message %></td>
+                               <td>
+                                   <a href="/dashboard/deleteAdmin/?adminId=<%= v.id %>"><i class="bi bi-trash"></i></a> 
+                                   ||
+                                   <a href="/dashboard/updateAdmin/<%= v.id %>"><i class="bi bi-pencil-square"></i></a>
+                               </td>
+                           </tr>
+                      <% })%>
+                   </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!--end::Container-->
+        </div>
+        <!--end::App Content-->
+      </main>
+      <!--end::App Main-->
+
+<%- include('../Layouts/Footer') %>
+
+<!-- Sorting -->
+<script>
+  let selectOption = document.querySelector('#selectOption');
+  let form = document.querySelector('#sortForm');
+
+  selectOption.addEventListener('change', (e) => {
+      if (e.target.value === 'asc' || e.target.value === 'desc') {
+          // Trigger the form submit automatically when either "Ascending" or "Descending" is selected
+          form.submit();
+      }
+  });
+</script>
