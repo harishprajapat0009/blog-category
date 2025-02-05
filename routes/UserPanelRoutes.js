@@ -44,6 +44,8 @@ routes.get('/blogDetails', userCtl.blogDetails);
 // Comments
 routes.post('/insertComments', userCtl.insertComments);
 
+routes.get('/deleteComment/:commentId', userCtl.deleteComment);
+
 // Likes
 routes.get('/setUserLikes/:commentId', userCtl.setUserLikes);
 

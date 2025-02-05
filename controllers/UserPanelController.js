@@ -27,7 +27,12 @@ module.exports.insertUser = async (req, res) => {
 
 module.exports.insertLogin = async (req, res) => {
     try{
-        return res.redirect('/');
+        if(req.cookies.blogPageUrl){
+            return res.redirect(req.cookies.blogPageUrl)
+        }
+        else{
+            return res.redirect('/');
+        }
     }
     catch(error){
         console.log("error = ", error);
@@ -53,6 +58,7 @@ module.exports.userLogout = async (req, res) => {
 // Home
 module.exports.home = async (req, res) => {
     try{
+        res.clearCookie('blogPageUrl')
 
         // Search
         let Search = '';
@@ -90,6 +96,8 @@ module.exports.home = async (req, res) => {
 
 module.exports.blogDetails = async (req, res) => {
     try{
+        res.cookie('blogPageUrl', `blogDetails/?blogId=${req.query.blogId}`)
+
         const singleBlog = await BlogModel.findById(req.query.blogId);
         const allBlog = await BlogModel.find({status : true}).limit(5).sort({_id : -1}).populate('categoryId').exec();
 
@@ -113,9 +121,9 @@ module.exports.insertComments = async (req, res) => {
         let addComment = await CommentModel.create(req.body);
         // ORM
         if(addComment){
-        let findBlog = await BlogModel.findById(req.body.blogId);
-        findBlog.Comment_Ids.push(addComment._id);
-        await BlogModel.findByIdAndUpdate(req.body.blogId, findBlog);
+            let findBlog = await BlogModel.findById(req.body.blogId);
+            findBlog.Comment_Ids.push(addComment._id);
+            await BlogModel.findByIdAndUpdate(req.body.blogId, findBlog);
         }
 
         console.log("Comment Added Successfully");
@@ -126,6 +134,34 @@ module.exports.insertComments = async (req, res) => {
         return res.redirect('back');
     }
 };
+
+module.exports.deleteComment = async (req, res) => {
+    try{
+        let getComment = await CommentModel.findById(req.params.commentId)
+        let deleteComment = await CommentModel.findByIdAndDelete(getComment.id);
+        if(deleteComment){
+                console.log("Comment deleted Successfully");
+
+                // Remove comment id from blog model
+    
+                await BlogModel.findByIdAndUpdate(
+                    getComment.blogId, 
+                    { $pull: { Comment_Ids : getComment.id } }
+                );
+                return res.redirect('back');
+        }
+       else{
+            console.log("Comment not deleted");
+            return res.redirect('back');
+       }
+    }
+    catch(error){
+        console.log("error =", error);
+        return res.redirect('back');
+    }
+};
+
+
 
 // Likes
 module.exports.setUserLikes = async (req, res) => {

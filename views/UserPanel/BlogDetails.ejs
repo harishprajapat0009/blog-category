@@ -125,8 +125,27 @@
                                             <h5><%= v.userId.userName %></h5>
                                             <div>
                                                 <% if(locals.user) { %>
-                                                    <a href="/setUserLikes/<%= v.id %>"><i class="ri-thumb-up-line"></i>(<%= v.likes.length %>)</a>
-                                                    <a href="/setUserDislikes/<%= v.id %>""><i class="ri-thumb-down-line"></i>(<%= v.dislikes.length %>)</a>
+                                                    <!-- Delete Btn -->
+                                                    <% if(v.userId.id == locals.user._id) { %>
+                                                        <a href="/deleteComment/<%= v.id %>"><i class="ri-delete-bin-line" style="color: blue;"></i> ||</a>
+                                                    <% } %>
+
+                                                    <!-- Like Btn -->
+                                                    <a href="/setUserLikes/<%= v.id %>">
+                                                        <% if(v.likes.includes(locals.user._id)){ %>
+                                                            <i class="ri-thumb-up-fill" style="color: blue;"></i>
+                                                        <% }else{ %>
+                                                            <i class="ri-thumb-up-line"></i>
+                                                        <% } %>
+                                                    (<%= v.likes.length %>)</a>
+
+                                                    <a href="/setUserDislikes/<%= v.id %>">
+                                                        <% if(v.dislikes.includes(locals.user._id)){ %>
+                                                            <i class="ri-thumb-down-fill" style="color: blue;"></i>
+                                                        <% }else{ %>
+                                                            <i class="ri-thumb-down-line"></i>
+                                                        <% } %>
+                                                    (<%= v.dislikes.length %>)</a>
                                                 <% } else { %>
                                                     <a href="/userLogin"><i class="ri-thumb-up-line"></i>(<%= v.likes.length %>)</a>
                                                     <a href="/userLogin"><i class="ri-thumb-down-line"></i>(<%= v.dislikes.length %>)</a>

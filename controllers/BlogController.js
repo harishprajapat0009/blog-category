@@ -123,7 +123,7 @@ module.exports.deleteBlog = async (req, res) => {
                 await CommentModel.findByIdAndDelete({_id : v})
         });
 
-        // Delete Blog from ategory
+        // Delete BlogId from Category model
         await CategoryModel.findByIdAndUpdate(
             getBlog.categoryId, 
             { $pull: { Blog_Ids : getBlog.id } }
@@ -214,9 +214,22 @@ module.exports.deleteMultiBlog = async (req, res) => {
 
 module.exports.changeBlogStatus = async (req, res) => {
     try{
-       let updateStatus = await BlogModel.findByIdAndUpdate(req.query.blogId, {status : req.query.status});
-      
-       return res.redirect('back')
+        let getBlog = await BlogModel.findById(req.query.blogId).populate('categoryId').exec();
+        
+        if(getBlog.categoryId.status == true){
+            await BlogModel.findByIdAndUpdate(req.query.blogId, {status : req.query.status});
+
+            // Change comment status
+            let comment = await CommentModel.find({blogId : req.query.blogId})
+            comment.map(async (v, i) => {
+                await CommentModel.findByIdAndUpdate({_id : v.id}, {status : req.query.status});
+            })
+        }
+        else{
+            req.flash('info', "Please activate this blog's category");
+        }
+        
+        return res.redirect('back')
     }
     catch(error){
         console.log("error = ", error);    

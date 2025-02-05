@@ -149,7 +149,30 @@ module.exports.deleteMultiCategory = async (req, res) => {
 
 module.exports.changeCategoryStatus = async (req, res) => {
     try{
-        let updateStatus = await CategoryModel.findByIdAndUpdate(req.query.categoryId, {status : req.query.status});
+        // Change category status
+        let getCategory = await CategoryModel.findById(req.query.categoryId)
+        await CategoryModel.findByIdAndUpdate(getCategory.id, {status : req.query.status});
+
+        // Change blog status of this category
+        await BlogModel.updateMany(
+            { _id: { $in: getCategory.Blog_Ids } },  // Find blogs where the blog ID is in the category's Blog_Ids array
+            { $set: { status: req.query.status } }   // Update the status of the blogs
+        );
+
+        // Change comment status of this blog
+        for (let blogId of getCategory.Blog_Ids) {
+            // Find the blog and its comment IDs
+            let blog = await BlogModel.findById(blogId);
+            
+            if (blog && blog.Comment_Ids && blog.Comment_Ids.length > 0) {
+                // Update the comments' status
+                await CommentModel.updateMany(
+                    { _id: { $in: blog.Comment_Ids } },  // Find comments by their IDs
+                    { $set: { status: req.query.status } } // Update status of the comments
+                );
+            }
+        }
+
         return res.redirect('back')
      }
      catch(error){

@@ -29,7 +29,13 @@ module.exports.viewComment = async (req, res) => {
 
 module.exports.changeCommentStatus = async (req, res) => {
     try{
-        let updateStatus = await CommentModel.findByIdAndUpdate(req.query.commentId, {status : req.query.status});
+        let getComment = await CommentModel.findById(req.query.commentId).populate('blogId').exec();
+        if(getComment.blogId.status == true){
+            await CommentModel.findByIdAndUpdate(req.query.commentId, {status : req.query.status});
+        }
+        else{
+            req.flash('info', "Please activate this comments blog");
+        }
         return res.redirect('back')
      }
      catch(error){

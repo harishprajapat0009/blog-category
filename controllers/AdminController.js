@@ -13,27 +13,34 @@ const { validationResult } = require('express-validator');
 module.exports.dashboard = async (req, res) => {
     try{
         // Category
-        let allCategory = await CategoryModel.find({status : true});
+        let allCategory = await CategoryModel.find({status : true}).populate('Blog_Ids').exec();
         let categoryNames = [];
         let categoryData = [];
         
 
-        allCategory.forEach((v, i) => {
+        allCategory.map((v, i) => {
             categoryNames.push(v.categoryName);
-            categoryData.push(v.Blog_Ids.length);
+            let activeBlogs = v.Blog_Ids.filter((v, i) => {
+                return v.status == true
+            })
+            categoryData.push(activeBlogs.length);
         });
+        
         let totalCategory = await CategoryModel.find({status : true}).countDocuments();
 
         // Blog
-        let allBlog = await BlogModel.find({status : true});
+        let allBlog = await BlogModel.find({status : true}).populate('Comment_Ids').exec();
         let totalBlog = await BlogModel.find({status : true}).countDocuments();
 
         let blogIds = [];
         let totalComments = [];
 
-        allBlog.forEach((v, i)=>{
+        allBlog.map((v, i)=>{
             blogIds.push(v.id)
-            totalComments.push(v.Comment_Ids.length)
+            let activeComments = v.Comment_Ids.filter((v, i) => {
+                return v.status == true
+            })
+            totalComments.push(activeComments.length)
         });
 
         // Comment
